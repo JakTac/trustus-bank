@@ -10,7 +10,6 @@ class ExpenseCategory(models.Model):
         related_name="categories",
         on_delete=models.CASCADE,
     )
-    pass
 
 
 class Account(models.Model):
