@@ -1,4 +1,4 @@
-from receipts.models import Receipt
+from receipts.models import Receipt, ExpenseCategory, Account
 from django.shortcuts import render, redirect
 from receipts.forms import ReceiptForm
 from django.contrib.auth.decorators import login_required
@@ -29,3 +29,21 @@ def create_receipt(request):
         "form": form,
     }
     return render(request, "receipts/create.html", context)
+
+
+@login_required
+def category_list(request):
+    categories = ExpenseCategory.objects.filter(owner=request.user)
+    context = {
+        "category_list": categories,
+    }
+    return render(request, "categories/list.html", context)
+
+
+@login_required
+def account_list(request):
+    accounts = Account.objects.filter(owner=request.user)
+    context = {
+        "account_list": accounts,
+    }
+    return render(request, "accounts/list.html", context)

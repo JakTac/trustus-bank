@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 
 
 def user_login(request):
-    if request.method == "GET":
-        form = LoginForm(request.GET)
+    if request.method == "POST":
+        form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
